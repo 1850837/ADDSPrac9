@@ -28,7 +28,7 @@ int DocumentManager::search(std::string name){
     }
 
     //case where it does find it
-    return doc->second->identifier;
+    return doc->second->newIdentifier;
 }
 
 bool DocumentManager::borrowDocument(int docid, int patronID){
@@ -41,7 +41,7 @@ bool DocumentManager::borrowDocument(int docid, int patronID){
     }
 
     //check if there are copies available
-    if (doc->second->limit <= 0){
+    if (doc->second->newLimit <= 0){
         return false;
     }
     
@@ -52,7 +52,7 @@ bool DocumentManager::borrowDocument(int docid, int patronID){
     }
 
     //borrow the document
-    doc->second->limit = doc->second->limit - 1;    //take the number down one
+    doc->second->newLimit = doc->second->newLimit - 1;    //take the number down one
     return true;
 }
     
@@ -72,6 +72,6 @@ void DocumentManager::returnDocument(int docid, int patronID){
     }
 
     //borrow the document
-    doc->second->limit = doc->second->limit + 1;    //take the number down one
+    doc->second->newLimit = doc->second->newLimit + 1;    //take the number down one
     return;
 }
